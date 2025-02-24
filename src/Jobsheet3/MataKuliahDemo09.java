@@ -18,7 +18,7 @@ public class MataKuliahDemo09 {
         }
 
         System.out.println("==== DAFTAR MATA KULIAH ====");
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < jumlahMatkul; i++) {
             arrayOfMataKuliah09[i].cetakInfo();
         }
 
