@@ -2,7 +2,7 @@ package Jobsheet2;
 
 public class DosenMain09 {
     public static void main(String[] args) {
-        
+
         Dosen09 dosen1 = new Dosen09("22112025", "Michael Nunez", true, 2010, "IT Support");
         dosen1.hitungMasaKerja(2025);
         dosen1.ubahKeahlian("Server Controller");
