@@ -47,7 +47,6 @@ public class Pemilihan {
             boolean lulus = nilaiHuruf.equals("A") || nilaiHuruf.equals("B+") || nilaiHuruf.equals("B")
                     || nilaiHuruf.equals("C+") || nilaiHuruf.equals("C");
 
-
             System.out.println("\nNilai Akhir: " + nilaiAkhir);
             System.out.println("Nilai Huruf: " + nilaiHuruf);
 
@@ -60,7 +59,6 @@ public class Pemilihan {
             }
         }
 
-    
         input09.close();
     }
 }
