@@ -50,7 +50,7 @@ public class DataDosen09 {
     void sortingDSC() {
         if (idx <= 1) {
             System.out.println("Data belum cukup untuk diurutkan!");
-            return; 
+            return;
         }
 
         for (int i = 0; i < idx - 1; i++) {
