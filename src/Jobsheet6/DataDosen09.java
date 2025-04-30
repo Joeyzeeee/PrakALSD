@@ -1,5 +1,7 @@
 package Jobsheet6;
 
+import java.util.ArrayList;
+
 public class DataDosen09 {
 
     Dosen09[] listDsn;
@@ -13,7 +15,6 @@ public class DataDosen09 {
         if (idx < listDsn.length) {
             listDsn[idx] = m;
             idx++;
-
         } else {
             System.out.println("Data penuh");
         }
@@ -32,7 +33,6 @@ public class DataDosen09 {
 
     void sortingASC() {
         if (idx <= 1) {
-            System.out.println("Data belum cukup untuk diurutkan!");
             return;
         }
 
@@ -47,41 +47,39 @@ public class DataDosen09 {
         }
     }
 
-    void sortingDSC() {
-        if (idx <= 1) {
-            System.out.println("Data belum cukup untuk diurutkan!");
-            return;
+    void pencarianDataSequential09(String cariNama) {
+        ArrayList<Dosen09> hasil = new ArrayList<>();
+        for (int i = 0; i < idx; i++) {
+            if (listDsn[i].nama.equalsIgnoreCase(cariNama)) {
+                hasil.add(listDsn[i]);
+            }
         }
 
-        for (int i = 0; i < idx - 1; i++) {
-            int idxMax = i;
-            for (int j = i + 1; j < idx; j++) {
-                if (listDsn[j].usia > listDsn[idxMax].usia) {
-                    idxMax = j;
-                }
+        if (hasil.isEmpty()) {
+            System.out.println("Dosen dengan nama \"" + cariNama + "\" tidak ditemukan.");
+        } else {
+            System.out.println("Dosen dengan nama \"" + cariNama + "\" ditemukan:");
+            for (Dosen09 dosen : hasil) {
+                dosen.tampil();
             }
-
-            Dosen09 tmp = listDsn[idxMax];
-            listDsn[idxMax] = listDsn[i];
-            listDsn[i] = tmp;
+            if (hasil.size() > 1) {
+                System.out.println("⚠ Peringatan: Ditemukan lebih dari satu dosen dengan nama yang sama!");
+            }
         }
     }
 
-    void insertionSort() {
-        if (idx <= 1) {
-            System.out.println("Data belum cukup untuk diurutkan!");
-            return;
-        }
+    int pencarianDataBinary09(int cariUsia, int left, int right) {
+        if (right >= left) {
+            int mid = left + (right - left) / 2;
 
-        for (int i = 1; i < idx; i++) {
-            Dosen09 temp = listDsn[i];
-            int j = i;
-            while (j > 0 && listDsn[j - 1].usia < temp.usia) {
-                listDsn[j] = listDsn[j - 1];
-                j--;
+            if (listDsn[mid].usia == cariUsia) {
+                return mid;
+            } else if (listDsn[mid].usia > cariUsia) {
+                return pencarianDataBinary09(cariUsia, left, mid - 1);
+            } else {
+                return pencarianDataBinary09(cariUsia, mid + 1, right);
             }
-            listDsn[j] = temp;
         }
+        return -1;
     }
-
 }
