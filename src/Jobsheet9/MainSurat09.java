@@ -17,7 +17,7 @@ public class MainSurat09 {
             System.out.println("5. Exit");
             System.out.print("Pilih: ");
             pilihan = sc.nextInt();
-            sc.nextLine(); 
+            sc.nextLine();
 
             switch (pilihan) {
                 case 1:
@@ -31,7 +31,7 @@ public class MainSurat09 {
                     char jenis = Character.toUpperCase(sc.next().charAt(0));
                     System.out.print("Durasi (hari): ");
                     int durasi = sc.nextInt();
-                    sc.nextLine(); 
+                    sc.nextLine();
                     Surat09 surat = new Surat09(id, nama, kelas, jenis, durasi);
                     stack.push(surat);
                     break;
@@ -65,7 +65,6 @@ public class MainSurat09 {
                 case 5:
                     System.out.println("Terima Kasih");
                     break;
-
 
                 default:
                     System.out.println("Pilihan tidak valid.");
