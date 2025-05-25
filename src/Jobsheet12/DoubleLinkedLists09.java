@@ -85,4 +85,90 @@ public class DoubleLinkedLists09 {
             System.out.println("Linked lists kosong!");
         }
     }
+
+    public void removeFirst09() throws Exception {
+        if (isEmpty09()) {
+            throw new Exception("Linked List masih kosong, tidak dapat dihapus!");
+        } else if (size == 1) {
+            removeLast09();
+        } else {
+            head = head.next;
+            head.prev = null;
+            size--;
+        }
+    }
+
+    public void removeLast09() throws Exception {
+        if (isEmpty09()) {
+            throw new Exception("Linked List masih kosong, tidak dapat dihapus!");
+        } else if (head.next == null) {
+            head = null;
+            size--;
+            return;
+        }
+
+        Node09 current = head;
+        while (current.next.next != null) {
+            current = current.next;
+        }
+        current.next = null;
+        size--;
+    }
+
+    public void remove09(int index) throws Exception {
+        if (isEmpty09() || index >= size) {
+            throw new Exception("Nilai indeks di luar batas!");
+        } else if (index == 0) {
+            removeFirst09();
+        } else {
+            Node09 current = head;
+            int i = 0;
+            while (i < index) {
+                current = current.next;
+                i++;
+            }
+
+            if (current.next == null) {
+                current.prev.next = null;
+            } else if (current.prev == null) {
+                current = current.next;
+                current.prev = null;
+                head = current;
+            } else {
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+            }
+            size--;
+        }
+    }
+
+    public int getFirst09() throws Exception {
+        if (isEmpty09()) {
+            throw new Exception("Linked List kosong!");
+        }
+        return head.data;
+    }
+
+    public int getLast09() throws Exception {
+        if (isEmpty09()) {
+            throw new Exception("Linked List kosong!");
+        }
+        Node09 tmp = head;
+        while (tmp.next != null) {
+            tmp = tmp.next;
+        }
+        return tmp.data;
+    }
+
+    public int get09(int index) throws Exception {
+        if (isEmpty09() || index >= size) {
+            throw new Exception("Nilai indeks di luar batas!");
+        }
+        Node09 tmp = head;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.next;
+        }
+        return tmp.data;
+    }
 }
+
