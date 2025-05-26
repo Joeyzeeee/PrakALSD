@@ -1,13 +1,14 @@
 package Jobsheet12;
 
 public class Node09 {
-    int data;
+    Mahasiswa09 data;
     Node09 prev;
     Node09 next;
+    
 
-    Node09(Node09 prev, int data, Node09 next) {
+    public Node09(Mahasiswa09 data) {
         this.data = data;
-        this.prev = prev;
-        this.next = next;
+        this.prev = null;
+        this.next = null;
     }
 }

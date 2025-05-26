@@ -1,71 +1,70 @@
 package Jobsheet12;
 
+import java.util.Scanner;
+
 public class DoubleLinkedListsMain09 {
-    public static void main(String[] args) throws Exception {
 
-        DoubleLinkedLists09 dll = new DoubleLinkedLists09();
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-        System.out.println("================================");
+    public static void main(String[] args) {
+        DoubleLinkedLists09 list = new DoubleLinkedLists09();
+        Scanner scan09 = new Scanner(System.in);
+        int pilihan;
 
-        dll.addFirst09(3);
-        dll.addLast09(4);
-        dll.addFirst09(7);
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-        System.out.println("================================");
+        do {
+            System.out.println("Menu Double Linked List Mahasiswa");
+            System.out.println("1. Tambah di awal");
+            System.out.println("2. Tambah di akhir");
+            System.out.println("3. Hapus di awal");
+            System.out.println("4. Hapus di akhir");
+            System.out.println("5. Tampilkan data");
+            System.out.println("6. Cari Mahasiswa berdasarkan NIM");
+            System.out.println("0. Keluar");
+            System.out.print("Pilih Menu: ");
+            pilihan = scan09.nextInt();
+            scan09.nextLine();
 
-        dll.add09(40, 1);
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-        System.out.println("================================");
+            switch (pilihan) {
+                case 1 -> {
+                    Mahasiswa09 mhs = inputMahasiswa09(scan09);
+                    list.addFirst(mhs);
+                }
+                case 2 -> {
+                    Mahasiswa09 mhs = inputMahasiswa09(scan09);
+                    list.addLast(mhs);
+                }
+                case 3 -> list.removeFirst();
+                case 4 -> list.removeLast();
+                case 5 -> list.print();
+                case 6 -> {
+                    System.out.print("Masukkan NIM yang dicari: ");
+                    String nim = scan09.nextLine();
+                    Node09 found = list.search(nim);
+                    if (found != null) {
+                        System.out.println("Data ditemukan:");
+                        found.data.tampil();
+                    } else {
+                        System.out.println("Data tidak ditemukan.");
+                    }
+                }
+                case 0 -> System.out.println("Keluar dari Program.");
+                default -> System.out.println("Pilihan tidak valid!");
+            }
 
-        dll.clear09();
-        dll.print09();
-        System.out.println("Size : " + dll.size);
+        } while (pilihan != 0);
 
-        dll.addLast09(50);
-        dll.addLast09(40);
-        dll.addLast09(10);
-        dll.addLast09(20);
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-        System.out.println("================================");
+        scan09.close();
+    }
 
-        dll.removeFirst09();
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-        System.out.println("================================");
+    public static Mahasiswa09 inputMahasiswa09(Scanner scan09) {
+        System.out.print("Masukkan NIM: ");
+        String nim = scan09.nextLine();
+        System.out.print("Masukkan Nama: ");
+        String nama = scan09.nextLine();
+        System.out.print("Masukkan Kelas: ");
+        String kelas = scan09.nextLine();
+        System.out.print("Masukkan IPK: ");
+        double ipk = scan09.nextDouble();
+        scan09.nextLine();
 
-        dll.removeLast09();
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-        System.out.println("================================");
-
-        dll.remove09(1);
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-
-        System.out.println("Percobaan 3");
-        dll.clear09();
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-        System.out.println("================================");
-
-        dll.addFirst09(3);
-        dll.addLast09(4);
-        dll.addFirst09(7);
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-        System.out.println("================================");
-
-        dll.add09(40, 1);
-        dll.print09();
-        System.out.println("Size : " + dll.size);
-        System.out.println("================================");
-
-        System.out.println("Data awal pada Linked Lists adalah : " + dll.getFirst09());
-        System.out.println("Data akhir pada Linked Lists adalah : " + dll.getLast09());
-        System.out.println("Data indeks ke-1 pada Linked Lists adalah : " + dll.get09(1));
+        return new Mahasiswa09(nim, nama, kelas, ipk);
     }
 }
