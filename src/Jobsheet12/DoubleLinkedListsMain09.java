@@ -17,6 +17,7 @@ public class DoubleLinkedListsMain09 {
             System.out.println("4. Hapus di akhir");
             System.out.println("5. Tampilkan data");
             System.out.println("6. Cari Mahasiswa berdasarkan NIM");
+            System.out.println("7. Sisipkan Mahasiswa setelah NIM tertentu");
             System.out.println("0. Keluar");
             System.out.print("Pilih Menu: ");
             pilihan = scan09.nextInt();
@@ -45,6 +46,13 @@ public class DoubleLinkedListsMain09 {
                         System.out.println("Data tidak ditemukan.");
                     }
                 }
+                case 7 -> {
+                    System.out.print("Masukkan NIM setelah node akan disisipkan: ");
+                    String keyNim = scan09.nextLine();
+                    Mahasiswa09 mhs = inputMahasiswa09(scan09);
+                    list.insertAfter(keyNim, mhs);
+                }
+
                 case 0 -> System.out.println("Keluar dari Program.");
                 default -> System.out.println("Pilihan tidak valid!");
             }

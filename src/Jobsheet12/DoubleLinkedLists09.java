@@ -72,6 +72,10 @@ public class DoubleLinkedLists09 {
     }
 
     public void print() {
+        if (isEmpty()) {
+            System.out.println("Linked list masih kosong, tidak ada data untuk ditampilkan.");
+            return;
+        }
         Node09 current = head;
         while (current != null) {
             current.data.tampil();
@@ -86,6 +90,9 @@ public class DoubleLinkedLists09 {
             return;
 
         }
+        System.out.println("Data yang terhapus: ");
+        head.data.tampil();
+
         if (head == tail) {
             head = tail = null;
 
@@ -93,6 +100,8 @@ public class DoubleLinkedLists09 {
             head = head.next;
             head.prev = null;
         }
+
+        System.out.println("Data sudah berhasil dihapus.");
     }
 
     public void removeLast() {
@@ -101,6 +110,9 @@ public class DoubleLinkedLists09 {
             return;
 
         }
+        System.out.println("Data yang terhapus adalah: ");
+        tail.data.tampil();
+
         if (head == tail) {
             head = tail = null;
 
@@ -108,6 +120,7 @@ public class DoubleLinkedLists09 {
             tail = tail.prev;
             tail.next = null;
         }
+        System.out.println("Data sudah berhasil dihapus.");
     }
 
     public Node09 search(String nim) {
