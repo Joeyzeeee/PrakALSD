@@ -3,10 +3,12 @@ package Jobsheet12;
 public class DoubleLinkedLists09 {
     Node09 head;
     Node09 tail;
+    int size;
 
     public DoubleLinkedLists09() {
         head = null;
         tail = null;
+        size = 0;
 
     }
 
@@ -24,6 +26,9 @@ public class DoubleLinkedLists09 {
             head.prev = newNode09;
             head = newNode09;
         }
+        size++;
+
+        System.out.println("Data berhasil ditambahkan di awal.");
 
     }
 
@@ -37,6 +42,8 @@ public class DoubleLinkedLists09 {
             newNode09.prev = tail;
             tail = newNode09;
         }
+        size++;
+        System.out.println("Data berhasil ditambahkan di akhir.");
 
     }
 
@@ -100,6 +107,7 @@ public class DoubleLinkedLists09 {
             head = head.next;
             head.prev = null;
         }
+        size--;
 
         System.out.println("Data sudah berhasil dihapus.");
     }
@@ -120,7 +128,9 @@ public class DoubleLinkedLists09 {
             tail = tail.prev;
             tail.next = null;
         }
+        size--;
         System.out.println("Data sudah berhasil dihapus.");
+
     }
 
     public Node09 search(String nim) {
@@ -133,6 +143,163 @@ public class DoubleLinkedLists09 {
         }
         return null;
 
+    }
+
+    public void add(int index, Mahasiswa09 data) {
+        if (index < 0) {
+            System.out.println("Indeks tidak valid.");
+            return;
+        }
+
+        if (isEmpty() || index == 0) {
+            addFirst(data);
+            return;
+        }
+
+        Node09 current = head;
+        int i = 0;
+
+        while (current != null && i < index) {
+            current = current.next;
+            i++;
+        }
+
+        if (current == null) {
+            addLast(data);
+        } else {
+            Node09 newNode = new Node09(data);
+            newNode.prev = current.prev;
+            newNode.next = current;
+            current.prev.next = newNode;
+            current.prev = newNode;
+        }
+    }
+
+    public void removeAfter(String keyNim) {
+        if (isEmpty()) {
+            System.out.println("List kosong. Tidak ada yang bisa dihapus.");
+            return;
+        }
+
+        Node09 current = head;
+
+        while (current != null && !current.data.nim.equals(keyNim)) {
+            current = current.next;
+        }
+
+        if (current == null) {
+            System.out.println("Data dengan NIM " + keyNim + " tidak ditemukan.");
+            return;
+        }
+
+        if (current.next == null) {
+            System.out.println("Tidak ada node setelah NIM " + keyNim + " yang bisa dihapus.");
+            return;
+        }
+
+        Node09 toDelete = current.next;
+
+        current.next = toDelete.next;
+        if (toDelete.next != null) {
+            toDelete.next.prev = current;
+        } else {
+
+            tail = current;
+        }
+
+        System.out.println("Node setelah NIM " + keyNim + " berhasil dihapus:");
+        toDelete.data.tampil();
+    }
+
+    public void remove(int index) {
+        if (isEmpty()) {
+            System.out.println("List kosong. Tidak ada yang bisa dihapus.");
+            return;
+        }
+
+        if (index < 0) {
+            System.out.println("Indeks tidak valid.");
+            return;
+        }
+
+        if (index == 0) {
+            System.out.print("Data yang dihapus: ");
+            head.data.tampil();
+            removeFirst();
+            return;
+        }
+
+        Node09 current = head;
+        int i = 0;
+
+        while (current != null && i < index) {
+            current = current.next;
+            i++;
+        }
+
+        if (current == null) {
+            System.out.println("Indeks melebihi panjang list. Tidak ada data yang dihapus.");
+            return;
+        }
+
+        System.out.print("Data yang dihapus: ");
+        current.data.tampil();
+
+        if (current == tail) {
+            removeLast();
+        } else {
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
+        }
+    }
+
+    public void getFirst() {
+        if (isEmpty()) {
+            System.out.println("List kosong. Tidak ada data pertama.");
+        } else {
+            System.out.println("Data pertama:");
+            head.data.tampil();
+        }
+    }
+
+    public void getLast() {
+        if (isEmpty()) {
+            System.out.println("List kosong. Tidak ada data terakhir.");
+        } else {
+            System.out.println("Data terakhir:");
+            tail.data.tampil();
+        }
+    }
+
+    public void getIndex(int index) {
+        if (isEmpty()) {
+            System.out.println("List kosong. Tidak ada data.");
+            return;
+        }
+
+        if (index < 0) {
+            System.out.println("Indeks tidak valid.");
+            return;
+        }
+
+        Node09 current = head;
+        int i = 0;
+
+        while (current != null && i < index) {
+            current = current.next;
+            i++;
+        }
+
+        if (current == null) {
+            System.out.println("Indeks melebihi jumlah node.");
+        } else {
+            System.out.println("Data pada indeks ke-" + index + ":");
+            current.data.tampil();
+        }
+    }
+
+    public int getSize() {
+        return size;
     }
 
 }
