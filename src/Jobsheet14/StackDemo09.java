@@ -23,12 +23,20 @@ public class StackDemo09 {
         if (temp2 != null) {
             System.out.println(temp2.toString());
 
-        for (Book09 book : books) {
-            System.out.println(book.toString());
-            System.out.println(books);
-        }
+            for (Book09 book : books) {
+                System.out.println(book.toString());
+                System.out.println(books);
+            }
 
         }
+
+        int posisi = books.search(book3);
+        if (posisi != -1) {
+            System.out.println("Buku ditemukan di posisi ke-" + posisi + " dari atas stack.");
+        } else {
+            System.out.println("Buku tidak ditemukan dalam stack.");
+        }
+
     }
 
 }
